@@ -13,6 +13,7 @@ form:
           fields:
             header.title:
               unset@: true
+
             meta:
               type: section
               title: Meta
@@ -47,11 +48,13 @@ form:
                   type: text
                   label: Subtitle Language (optional, abbreviated) ℹ️
                   help: for example ENG or SPA
+
             moviecontent:
               type: section
               title: Content
               underline: true
               ordering@: meta
+
             credits:
               type: section
               title: Credits
@@ -70,11 +73,12 @@ form:
                     .entries:
                       type: textarea
                       label: entries
+
             artist:
               type: section
               title: Artist
               underline: true
-              ordering@: header.credits
+              ordering@: credits
               fields:
                 header.department:
                   style: small
@@ -85,3 +89,15 @@ form:
                   style: vertical
                   type: editor
                   label: artist bio
+
+            img:
+              type: section
+              title: Images
+              underline: true
+              ordering@: artist
+            header.featured:
+              label: featured image ℹ️
+              help: if there are multiple images, you can select one here to be the thumbnail. if none are selected it will just take the first image
+              type: pagemediaselect
+              preview_images: true
+              multiple: false
