@@ -187,7 +187,7 @@ gpm:
   releases: stable
   proxy_url: null
   method: auto
-  verify_peer: true
+  verify_peer: false
   official_gpm_only: true
 accounts:
   type: regular
