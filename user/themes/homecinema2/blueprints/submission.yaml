@@ -11,10 +11,77 @@ form:
         content:
           type: tab
           fields:
-            # header.credits:
-            #   type: editor
-            #   label: credits go here
-            # header.vimeo:
-            #   type: text
-            #   label: VIMEO VIDEO ID IN HERE
-            #   ordering@: 1
+            header.title:
+              unset@: true
+            meta:
+              type: section
+              title: Meta
+              underline: true
+              ordering@: 1
+              fields:
+                header.title:
+                  style: small
+                  type: text
+                  label: Title
+                header.author:
+                  ordering@: header.title
+                  type: text
+                  label: Author
+                  style: small
+                header.year:
+                  ordering@: header.author
+                  type: text
+                  label: Year
+                header.duration:
+                  ordering@: header.year
+                  type: text
+                  label: Duration (min) ℹ️
+                  help: only put a number in here, no min pls
+                header.languagespoken:
+                  ordering@: header.duration
+                  type: text
+                  label: Spoken Language (optional, abbreviated) ℹ️
+                  help: for example ENG or SPA
+                header.languagesubs:
+                  ordering@: header.languagespoken
+                  type: text
+                  label: Subtitle Language (optional, abbreviated) ℹ️
+                  help: for example ENG or SPA
+            moviecontent:
+              type: section
+              title: Content
+              underline: true
+              ordering@: meta
+            credits:
+              type: section
+              title: Credits
+              underline: true
+              ordering@: content
+              fields:
+                header.credits:
+                  type: list
+                  label: Credits ℹ️
+                  style: vertical
+                  help: Click 'add item' for each category in the credits (directed by, starring), and then add all entries for that entry in that field
+                  fields:
+                    .category:
+                      type: text
+                      label: category
+                    .entries:
+                      type: textarea
+                      label: entries
+            artist:
+              type: section
+              title: Artist
+              underline: true
+              ordering@: header.credits
+              fields:
+                header.department:
+                  style: small
+                  type: text
+                  label: department ℹ️
+                  help: departments abbreviated when possible pls (SIS, not studio for immediate spaces)
+                header.artistbio:
+                  style: vertical
+                  type: editor
+                  label: artist bio
