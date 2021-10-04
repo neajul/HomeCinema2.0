@@ -1,0 +1,16 @@
+title: Page Content
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          fields:
+            # header.test:
+            #   type: text
+            #   label: test

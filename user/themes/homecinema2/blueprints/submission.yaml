@@ -1,0 +1,20 @@
+title: Page Content
+'@extends': about-imprint
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          fields:
+            # header.credits:
+            #   type: editor
+            #   label: credits go here
+            # header.vimeo:
+            #   type: text
+            #   label: VIMEO VIDEO ID IN HERE
+            #   ordering@: 1

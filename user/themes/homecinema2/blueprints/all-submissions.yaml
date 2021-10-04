@@ -1,0 +1,17 @@
+title: Page Content
+'@extends': default
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          fields:
+            header.media_order:
+              unset@: true
+            content:
+              unset@: true
