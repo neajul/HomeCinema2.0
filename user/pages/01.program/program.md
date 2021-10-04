@@ -1,5 +1,5 @@
 ---
 title: Program
+visible: true
 ---
 
-test

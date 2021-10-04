@@ -15,6 +15,11 @@
   --color7: #00FF67; /* green */
   --color8: #FF7B22; /* orange */
   --color9: white; /* white */
+
+  /* margins */
+  --margin: 10px;
+  --marg2x: calc( 2 * var(--margin) );
+  --marg3x: calc( 3 * var(--margin) );
 }
 
 
