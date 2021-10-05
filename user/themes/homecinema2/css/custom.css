@@ -5,6 +5,12 @@ img{
 .top-section{
   margin-top: 15em;
 }
+.selected.asc{
+  color: red;
+}
+.selected.desc{
+  color: green;
+}
 
 
 

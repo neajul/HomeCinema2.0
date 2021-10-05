@@ -20,7 +20,7 @@
         <li class="img">img</li>
         <li class="title">title</li>
         <li class="author">author</li>
-        <li class="start selected asc">department</li>
+        <li class="department-start selected asc">department</li>
         <li class="length">duration</li>
       </ul>
     </li>
@@ -37,24 +37,24 @@
         <li class="table-line">
           <ul class="block-table">
             {# first line with block info #}
-            <li class="first-table-line">
+            <li class="block table-line first">
               <ul>
-                <li class="title">{{scheduleitem.title}}</li>
-                <li class="authors">{{scheduleitem.authors}}</li>
-                <li class="start">{{scheduleitem.time}}</li>
-                <li class="length">{{scheduleitem.length}} min</li>
+                <li class="block title">{{scheduleitem.title}}</li>
+                <li class="block authors">{{scheduleitem.authors}}</li>
+                <li class="block start">{{scheduleitem.time}}</li>
+                <li class="block length">{{scheduleitem.length}} min</li>
               </ul>
             </li>
             {# now we loop through the movies in the block, and display them #}
             {% for blockitem in scheduleitem.items %}
-              <li class="table-line">
+              <li class="block table-line">
                 {% set blocksubmission = pages.find(blockitem) %}
 
                 <a href="{{blocksubmission.url}}">
                   <ul>
 
                     {# img #}
-                    <li class="img">
+                    <li class="block img">
                       {# check if there is a featured image #}
                       {% if blocksubmission.header.featured|length %}
                         {{ blocksubmission.media[blocksubmission.header.featured].html(blocksubmission.menu, blocksubmission.menu)|raw }}
@@ -65,12 +65,12 @@
                     </li>
 
                     {# title #}
-                    <li class="title">
+                    <li class="block title">
                       {{blocksubmission.title}}
                     </li>
 
                     {# author #}
-                    <li class="author">
+                    <li class="block author">
                       {% if blocksubmission.header.author|length %}
                         {% set author = blocksubmission.header.author %}
                       {% else %}
@@ -80,7 +80,7 @@
                     </li>
 
                     {# duration #}
-                    <li class="duration">
+                    <li class="block duration">
                       {% if blocksubmission.header.duration|length %}
                         {% set duration = blocksubmission.header.duration ~ " min" %}
                       {% else %}
