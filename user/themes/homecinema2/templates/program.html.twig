@@ -2,22 +2,6 @@
 
 {% set empty = "—" %}
 
-{# first sort all items by time #}
-{% set schedule = page.header.schedule|sort_by_key("time") %}
-{# find all days in the list #}
-{% set days = [] %}
-{% for scheduleitem in schedule %}
-  {% set days = days|merge([scheduleitem.time|split(" ")|first]) %}
-{% endfor %}
-{# filter out everything to only unique days #}
-{% set uniquedays = days|reduce(
-    (uniquedays, item) => item in uniquedays ? uniquedays : uniquedays|merge([item]), []
-) %}
-{# sort days alphabetically #}
-{% set uniquedays = uniquedays|sort %}
-
-
-
 {% block content %}
 {# start by looping through days #}
 {% for day in uniquedays %}
@@ -64,7 +48,7 @@
 
                 <a href="{{blocksubmission.url}}">
                   <ul>
-                  
+
                     {# img #}
                     <li class="img">
                       {# check if there is a featured image #}

@@ -1,9 +1,28 @@
 {% set aboutpage = pages.find('/about') %}
 
+{% set schedulepage = pages.find('/program') %}
+{# first sort all items by time #}
+{% set schedule = schedulepage.header.schedule|sort_by_key("time") %}
+{# find all days in the list #}
+{% set days = [] %}
+{% for scheduleitem in schedule %}
+  {% set days = days|merge([scheduleitem.time|split(" ")|first]) %}
+{% endfor %}
+{# filter out everything to only unique days #}
+{% set uniquedays = days|reduce(
+    (uniquedays, item) => item in uniquedays ? uniquedays : uniquedays|merge([item]), []
+) %}
+{# sort days alphabetically #}
+{% set uniquedays = uniquedays|sort %}
+
+
+
+
 <!DOCTYPE html>
 <html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
 <head>
 {% block head %}
+{# make array of all items #}
     <meta charset="utf-8" />
     <title>{% if header.title %}{{ header.title|e }} 🍿 {% endif %}{{ site.title|e }}</title>
 
@@ -68,6 +87,21 @@
         {% block topsection %}
             <div class="top-section">
               <div class="now-playing">
+                {# make invisible playorder for js script #}
+                <ul class="playorder">
+                  {% for item in schedule %}
+                    {% if item.items|length > 1 %}
+                      {# block #}
+                      <li data-time="{{item.time}}" data-title="{{item.title}}" data-author="{{item.authors}}"></li>
+                    {% else %}
+                      {# single item #}
+                      {% set project = pages.find(item.items|first) %}
+                      <li data-time="{{item.time}}" data-title="{{project.title}}" data-author="{{project.header.author}}"></li>
+                    {% endif %}
+                    {{dump(item)}}
+
+                  {% endfor %}
+                </ul>
                 Now playing STILL NEEDS TO BE CODED
               </div>
 

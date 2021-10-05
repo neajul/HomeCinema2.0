@@ -63,3 +63,6 @@ hr{
   font-style: normal;
   color: var(--color5);
 }
+.playorder{
+  display: none;
+}
