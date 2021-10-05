@@ -73,9 +73,9 @@
               </label>
               <span class="label dark"><i data-feather="sunset"></i></span>
             </div>
-            <button type="button" name="menu">Menu</button>
+            <button type="button" name="menu" id="toggle-menu">Menu</button>
             {% block header_navigation %}
-            <nav class="main-nav">
+            <nav class="main-nav hide">
                 {% include 'partials/navigation.html.twig' %}
             </nav>
             {% endblock %}

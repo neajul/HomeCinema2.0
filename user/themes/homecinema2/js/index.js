@@ -23,6 +23,11 @@ $(function(){
     $('body').toggleClass("dark");
   });
 
+  // open-close menu
+  $('#toggle-menu').click(function(){
+    $('.main-nav').toggleClass('hide');
+  });
+
   // add open cinema function
   $('.cinema-button').click(function(){
     openCloseCinema();

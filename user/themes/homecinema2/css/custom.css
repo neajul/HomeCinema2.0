@@ -2,9 +2,6 @@
 img{
   width: 100px;
 }
-.top-section{
-  margin-top: 15em;
-}
 .selected.asc{
   color: red;
 }
@@ -76,6 +73,9 @@ hr{
   border-bottom: 1px solid var(--color1);
   margin: var(--margin) 0;
 }
+.hide{
+  display: none;
+}
 
 
 
@@ -97,6 +97,25 @@ hr{
   top: 0;
   background: inherit;
   z-index: 2;
+}
+.header .wrapper{
+  height: 5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--margin);
+}
+.header .context{
+  display: none;
+}
+.header .light-dark{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header .light-dark .label svg{
+  height: 1.25em;
+  margin-bottom: -.4em;
 }
 /* dark/light switch */
 /* The switch - the box around the slider */
@@ -143,16 +162,46 @@ hr{
 .light-dark .slider.round:before {
   border-radius: 100%;
 }
+/* Actual Menu */
+nav.main-nav{
+  position: fixed;
+  top: var(--margin);
+  /* right: var(--margin); */
+  right: 100px;
+  padding: var(--margin);
+  background: var(--color7);
+  border-radius: var(--margin);
+}
 
 
 
+/* Body */
+#body .wrapper{
+  background: var(--color4);;
+  position: relative;
+  z-index: 1;
+  padding: var(--margin);
+}
 /* Top Section */
-.intro em{
+.top-section{
+  margin-top: 5em;
+}
+.top-section .intro em{
   font-style: normal;
   color: var(--color5);
 }
-.playorder{
+.top-section .playorder{
   display: none;
+}
+.top-section .now-playing{
+  margin: 0;
+  padding: var(--margin) 0;
+  background: var(--color2);
+  border: 1px solid var(--color1);
+  color: var(--color9);
+}
+.top-section .now-playing em{
+  color: var(--color7);
 }
 /* enter the cinema */
 #body .wrapper{
@@ -169,15 +218,6 @@ hr{
   max-height: 100%;
   overflow: hidden;
   pointer-events: none;
-}
-
-
-
-/* Body */
-#body .wrapper{
-  background: var(--color4);;
-  position: relative;
-  z-index: 1;
 }
 
 
