@@ -152,8 +152,8 @@ log:
   syslog:
     facility: local6
 debugger:
-  enabled: false
-  provider: clockwork
+  enabled: true
+  provider: debugbar
   censored: false
   shutdown:
     close_connection: true

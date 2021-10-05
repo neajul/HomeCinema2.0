@@ -15,3 +15,43 @@ form:
               unset@: true
             content:
               unset@: true
+            schedule:
+              type: section
+              title: Schedule
+              underline: true
+              ordering@: header.title
+              fields:
+                header.schedule:
+                  name: schedule
+                  type: list
+                  style: vertical
+                  label: add schedule items
+                  fields:
+                    .items:
+                      type: pages
+                      label: select items
+                      start_route: 'all_submissions'
+                      show_all: false
+                      show_modular: false
+                      show_root: false
+                      help: select one or more items for this schedule item
+                      multiple: true
+                      array: true
+                      validate.type: array
+                    .time:
+                      type: datetime
+                      label: start time/date
+                      toggleable: false
+                      # format: "Y.m.d H-i-s"
+                    .title:
+                      type: text
+                      label: title (only for block) ℹ️
+                      help: with blocks i mean multiple items in one, like multiple short films
+                    .authors:
+                      type: text
+                      label: authors (only for block, can be various artists for example) ℹ️
+                      help: with blocks i mean multiple items in one, like multiple short films
+                    .length:
+                      type: text
+                      label: length (only for block) ℹ️
+                      help: with blocks i mean multiple items in one, like multiple short films

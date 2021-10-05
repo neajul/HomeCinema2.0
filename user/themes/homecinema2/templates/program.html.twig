@@ -1,5 +1,174 @@
 {% extends 'partials/base.html.twig' %}
 
+{% set empty = "—" %}
+
+{# first sort all items by time #}
+{% set schedule = page.header.schedule|sort_by_key("time") %}
+{# find all days in the list #}
+{% set days = [] %}
+{% for scheduleitem in schedule %}
+  {% set days = days|merge([scheduleitem.time|split(" ")|first]) %}
+{% endfor %}
+{# filter out everything to only unique days #}
+{% set uniquedays = days|reduce(
+    (uniquedays, item) => item in uniquedays ? uniquedays : uniquedays|merge([item]), []
+) %}
+{# sort days alphabetically #}
+{% set uniquedays = uniquedays|sort %}
+
+
+
 {% block content %}
-  {{ page.content|raw }}
+{# start by looping through days #}
+{% for day in uniquedays %}
+  <div class="table-header">
+    [{{day}}]
+  </div>
+
+  {# first line #}
+  <ul class="movie-table">
+    <li class="table-line first">
+      <ul>
+        <li class="img">img</li>
+        <li class="title">title</li>
+        <li class="author">author</li>
+        <li class="start selected asc">department</li>
+        <li class="length">duration</li>
+      </ul>
+    </li>
+
+    {# now create a line for each submission on that day #}
+    {% for scheduleitem in schedule if scheduleitem.time|split(" ")|first == day %}
+      {# check if it's a block or just a single movie #}
+      {% if scheduleitem.items|length > 1 %}
+
+
+
+
+        {# block, so we start creating another nested table  #}
+        <li class="table-line">
+          <ul class="block-table">
+            {# first line with block info #}
+            <li class="first-table-line">
+              <ul>
+                <li class="title">{{scheduleitem.title}}</li>
+                <li class="authors">{{scheduleitem.authors}}</li>
+                <li class="start">{{scheduleitem.time}}</li>
+                <li class="length">{{scheduleitem.length}} min</li>
+              </ul>
+            </li>
+            {# now we loop through the movies in the block, and display them #}
+            {% for blockitem in scheduleitem.items %}
+              <li class="table-line">
+                {% set blocksubmission = pages.find(blockitem) %}
+
+                <a href="{{blocksubmission.url}}">
+                  <ul>
+                  
+                    {# img #}
+                    <li class="img">
+                      {# check if there is a featured image #}
+                      {% if blocksubmission.header.featured|length %}
+                        {{ blocksubmission.media[blocksubmission.header.featured].html(blocksubmission.menu, blocksubmission.menu)|raw }}
+                      {# otherwise, just take first image #}
+                      {% else %}
+                        {{ blocksubmission.media|first.html(blocksubmission.menu, blocksubmission.menu)|raw }}
+                      {% endif %}
+                    </li>
+
+                    {# title #}
+                    <li class="title">
+                      {{blocksubmission.title}}
+                    </li>
+
+                    {# author #}
+                    <li class="author">
+                      {% if blocksubmission.header.author|length %}
+                        {% set author = blocksubmission.header.author %}
+                      {% else %}
+                        {% set author = empty %}
+                      {% endif %}
+                      {{ author }}
+                    </li>
+
+                    {# duration #}
+                    <li class="duration">
+                      {% if blocksubmission.header.duration|length %}
+                        {% set duration = blocksubmission.header.duration ~ " min" %}
+                      {% else %}
+                        {% set duration = empty %}
+                      {% endif %}
+                      {{ duration }}
+                    </li>
+                  </ul>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </li>
+
+
+
+
+
+      {% else %}
+        {# single, so find page, and then just fill in #}
+        {% set submission = pages.find(scheduleitem.items|first) %}
+        <li class="table-line">
+          <a href="{{submission.url}}">
+            <ul>
+              {# img #}
+              <li class="img">
+                {# check if there is a featured image #}
+                {% if submission.header.featured|length %}
+                  {{ submission.media[submission.header.featured].html(submission.menu, submission.menu)|raw }}
+                {# otherwise, just take first image #}
+                {% else %}
+                  {{ submission.media|first.html(submission.menu, submission.menu)|raw }}
+                {% endif %}
+              </li>
+
+              {# title #}
+              <li class="title">
+                {{submission.title}}
+              </li>
+
+              {# author #}
+              <li class="author">
+                {% if submission.header.author|length %}
+                  {% set author = submission.header.author %}
+                {% else %}
+                  {% set author = empty %}
+                {% endif %}
+                {{ author }}
+              </li>
+
+              {# department #}
+              <li class="department-start">
+                {% if scheduleitem.time|length %}
+                  {% set time = scheduleitem.time|split(" ")|last %}
+                {% else %}
+                  {% set time = empty %}
+                {% endif %}
+                {{ time }}
+              </li>
+
+              {# duration #}
+              <li class="duration">
+                {% if submission.header.duration|length %}
+                  {% set duration = submission.header.duration ~ " min" %}
+                {% else %}
+                  {% set duration = empty %}
+                {% endif %}
+                {{ duration }}
+              </li>
+            </ul>
+          </a>
+        </li>
+
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endfor %}
+
 {% endblock %}
