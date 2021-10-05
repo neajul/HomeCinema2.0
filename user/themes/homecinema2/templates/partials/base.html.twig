@@ -1,9 +1,11 @@
+{% set aboutpage = pages.find('/about') %}
+
 <!DOCTYPE html>
 <html lang="{{ (grav.language.getActive ?: grav.config.site.default_lang)|e }}">
 <head>
 {% block head %}
     <meta charset="utf-8" />
-    <title>{% if header.title %}{{ header.title|e }} | {% endif %}{{ site.title|e }}</title>
+    <title>{% if header.title %}{{ header.title|e }} 🍿 {% endif %}{{ site.title|e }}</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,6 +23,8 @@
 
 {% block javascripts %}
     {% do assets.addJs('jquery', 100) %}
+    {% do assets.addJs('https://unpkg.com/feather-icons', 99) %}
+    {% do assets.addJs('theme://js/index.js', {group:'bottom'}) %}
 {% endblock %}
 
 {% block assets deferred %}
@@ -28,15 +32,27 @@
     {{ assets.js()|raw }}
 {% endblock %}
 </head>
-<body id="top" class="{{ page.header.body_classes|e }}">
+<body id="top" class="{{ page.header.body_classes|e }} light">
 
 {% block header %}
     <div class="header">
         <div class="wrapper padding">
             <a class="logo left" href="{{ home_url|e }}">
-                <i class="fa fa-rebel"></i>
                 {{ config.site.title|e }}
             </a>
+            <span class="context">
+              {{aboutpage.header.context}}
+            </span>
+            <div class="light-dark">
+              {# https://www.w3schools.com/howto/howto_css_switch.asp #}
+              <label class="switch">
+                <span class="label light"><i data-feather="sunrise"></i></span>
+                <input type="checkbox">
+                <span class="slider round"></span>
+                <span class="label dark"><i data-feather="sunset"></i></span>
+              </label>
+            </div>
+            <button type="button" name="menu">Menu</button>
             {% block header_navigation %}
             <nav class="main-nav">
                 {% include 'partials/navigation.html.twig' %}
@@ -49,17 +65,44 @@
 {% block body %}
     <section id="body">
         <div class="wrapper padding">
+        {% block topsection %}
+            <div class="top-section">
+              <div class="now-playing">
+                Now playing STILL NEEDS TO BE CODED
+              </div>
+
+              <hr>
+
+              <div class="dashboard">
+                <div class="intro">
+                  {{ aboutpage.header.intro|markdown }}
+                </div>
+                <div class="navigation">
+                  <ul class="location">
+                    <li>{{page.title}}</li>
+                    <li>(You're currently here)</li>
+                  </ul>
+                  <ul class="mode">
+                    <li class="label light"><i data-feather="sunrise"></i></li>
+                    <li class="label dark"><i data-feather="sunset"></i></li>
+                    <li>(You're currently here)</li>
+                  </ul>
+                  <ul class="enter">
+                    <li class="dark">
+                      <button type="button" name="cinema">[Enter Cinema]</button>
+                    </li>
+                    <li>Please put your phone on silent</li>
+                  </ul>
+                </div>
+              </div>
+
+              <hr>
+
+            </div>
+        {% endblock %}
         {% block content %}{% endblock %}
         </div>
     </section>
-{% endblock %}
-
-{% block footer %}
-    <div class="footer text-center">
-        <div class="wrapper padding">
-            <p><a href="https://getgrav.org">Grav</a> was <i class="fa fa-code"></i> with <i class="fa fa-heart"></i> by <a href="https://rockettheme.com">RocketTheme</a>.</p>
-        </div>
-    </div>
 {% endblock %}
 
 {% block bottom %}

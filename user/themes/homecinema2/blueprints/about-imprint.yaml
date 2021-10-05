@@ -1,16 +1,23 @@
 title: Page Content
 '@extends': default
 
-# form:
-#   fields:
-#     tabs:
-#       type: tabs
-#       active: 1
-#
-#       fields:
-#         content:
-#           type: tab
-#           fields:
-#             header.test:
-#               type: text
-#               label: test
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          fields:
+            header.context:
+              type: text
+              label: menu [live from] text
+              ordering@: header.title
+              style: vertical
+            header.intro:
+              type: text
+              label: Shortened Intro for top section
+              ordering@: header.context
+              style: vertical

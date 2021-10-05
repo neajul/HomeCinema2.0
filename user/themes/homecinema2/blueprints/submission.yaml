@@ -1,5 +1,5 @@
 title: Page Content
-'@extends': about-imprint
+'@extends': default
 
 form:
   fields:

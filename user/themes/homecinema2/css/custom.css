@@ -25,12 +25,29 @@
 
 /* Core Stuff */
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  font-size: var(--type-reg);
+  line-height: 1.2;
+}
+hr{
+  border: none;
+  border-bottom: 1px solid var(--color1);
+  margin: var(--margin) 0;
 }
 
-body {
-    font-size: var(--type-reg);
-    line-height: 1.2;
+/* Light mode/Dark mode */
+.light .dashboard .mode .dark{
+  display: none;
+}
+.dark .dashboard .mode .light{
+  display: none;
+}
+
+/* menu/navigation */
+.header{
+  border-bottom: 1px solid var(--color1);
 }
