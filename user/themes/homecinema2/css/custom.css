@@ -1,3 +1,9 @@
+/* testing */
+img{
+  width: 100px;
+}
+
+
 /* variables */
 :root{
   /* type */
@@ -50,4 +56,10 @@ hr{
 /* menu/navigation */
 .header{
   border-bottom: 1px solid var(--color1);
+}
+
+/* Top Section */
+.intro em{
+  font-style: normal;
+  color: var(--color5);
 }

@@ -1,5 +1,70 @@
 {% extends 'partials/base.html.twig' %}
 
+{% set empty = "—" %}
+
 {% block content %}
-  {{ page.content|raw }}
+  <div class="table-header">
+    [{{page.title}}]
+  </div>
+  <ul class="movie-table">
+    <li class="table-line first">
+      <ul>
+        <li class="img">img</li>
+        <li class="title">title</li>
+        <li class="author">author</li>
+        <li class="department selected asc">department</li>
+        <li class="duration">duration</li>
+      </ul>
+    </li>
+  {# loop through all submission #}
+  {% for submission in page.children.order('header.department','asc') if submission.template == 'submission'%}
+    <li class="table-line">
+      <a href="{{submission.url}}">
+        <ul>
+          {# img #}
+          <li class="img">
+            {# check if there is a featured image #}
+            {% if submission.header.featured|length %}
+              {{ submission.media[submission.header.featured].html(submission.menu, submission.menu)|raw }}
+            {# otherwise, just take first image #}
+            {% else %}
+              {{ submission.media|first.html(submission.menu, submission.menu)|raw }}
+            {% endif %}
+          </li>
+          {# title #}
+          <li class="title">
+            {{submission.title}}
+          </li>
+          {# author #}
+          <li class="author">
+            {% if submission.header.author|length %}
+              {% set author = submission.header.author %}
+            {% else %}
+              {% set author = empty %}
+            {% endif %}
+            {{ author }}
+          </li>
+          {# department #}
+          <li class="department">
+            {% if submission.header.department|length %}
+              {% set department = submission.header.department %}
+            {% else %}
+              {% set department = empty %}
+            {% endif %}
+            {{ department }}
+          </li>
+          {# duration #}
+          <li class="duration">
+            {% if submission.header.duration|length %}
+              {% set duration = submission.header.duration ~ " min" %}
+            {% else %}
+              {% set duration = empty %}
+            {% endif %}
+            {{ duration }}
+          </li>
+        </ul>
+      </a>
+    </li>
+  {% endfor %}
+  </ul>
 {% endblock %}
