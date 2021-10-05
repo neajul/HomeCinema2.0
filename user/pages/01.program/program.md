@@ -5,7 +5,7 @@ schedule:
     -
         items:
             - /all-submissions/2001-leith-odyssee
-        time: '05-10-2021 18:17'
+        time: '05-10-2021 18:01'
         title: null
         authors: null
         length: null

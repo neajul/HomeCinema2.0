@@ -86,23 +86,23 @@
         <div class="wrapper padding">
         {% block topsection %}
             <div class="top-section">
-              <div class="now-playing">
-                {# make invisible playorder for js script #}
-                <ul class="playorder">
-                  {% for item in schedule %}
-                    {% if item.items|length > 1 %}
-                      {# block #}
-                      <li data-time="{{item.time}}" data-title="{{item.title}}" data-author="{{item.authors}}"></li>
-                    {% else %}
-                      {# single item #}
-                      {% set project = pages.find(item.items|first) %}
-                      <li data-time="{{item.time}}" data-title="{{project.title}}" data-author="{{project.header.author}}"></li>
-                    {% endif %}
-                    {{dump(item)}}
+              {# make invisible playorder for js script #}
+              <ul class="playorder">
+                {% for item in schedule %}
+                  {% if item.items|length > 1 %}
+                    {# block #}
+                    <li data-time="{{item.time}}" data-duration="{{item.length}}" data-title="{{item.title}}" data-author="{{item.authors}}"></li>
+                  {% else %}
+                    {# single item #}
+                    {% set project = pages.find(item.items|first) %}
+                    <li data-time="{{item.time}}" data-duration="{{project.header.duration}}" data-title="{{project.title}}" data-author="{{project.header.author}}"></li>
+                  {% endif %}
+                  {{dump(item)}}
 
-                  {% endfor %}
-                </ul>
-                Now playing STILL NEEDS TO BE CODED
+                {% endfor %}
+              </ul>
+              <div class="now-playing">
+                Next Up +++ Next Up +++ Next Up +++ Next Up +++ Next Up +++ Next Up +++ Next Up +++ Next Up +++ 
               </div>
 
               <hr>
