@@ -1,5 +1,9 @@
 {% extends 'partials/base.html.twig' %}
 
+{% block extrajs %}
+  {% do assets.addJs('theme://js/tablesorting.js', {group:'bottom'}) %}
+{% endblock %}
+
 {% set empty = "—" %}
 
 {% block content %}

@@ -2,6 +2,10 @@
 img{
   width: 100px;
 }
+.top-section{
+  margin-top: 15em;
+}
+
 
 
 /* variables */
@@ -26,7 +30,27 @@ img{
   --margin: 10px;
   --marg2x: calc( 2 * var(--margin) );
   --marg3x: calc( 3 * var(--margin) );
+
+  /* animation */
+  --transition-short: .1s;
+  --transition-med: .3s;
+  --transition-long: .8s;
 }
+.light{
+
+}
+body.dark{
+  --color1: white; /* black */
+  --color2: #E1CFC6; /* brown, dark */
+  --color3: #554A46; /* pink */
+  --color4: #131312; /* beige */
+  --color5: #1AFFF1; /* red */
+  --color6: #FBC357; /* blue */
+  --color7: #4371EA; /* green */
+  --color8: #DD5442; /* orange */
+  --color9: black; /* white */
+}
+
 
 
 /* Core Stuff */
@@ -38,12 +62,16 @@ img{
 body {
   font-size: var(--type-reg);
   line-height: 1.2;
+  background: var(--color4);
+  color: var(--color1);
 }
 hr{
   border: none;
   border-bottom: 1px solid var(--color1);
   margin: var(--margin) 0;
 }
+
+
 
 /* Light mode/Dark mode */
 .light .dashboard .mode .dark{
@@ -53,10 +81,64 @@ hr{
   display: none;
 }
 
+
+
 /* menu/navigation */
 .header{
   border-bottom: 1px solid var(--color1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: inherit;
+  z-index: 2;
 }
+/* dark/light switch */
+/* The switch - the box around the slider */
+.light-dark .switch {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 1.25em;
+}
+/* Hide default HTML checkbox */
+.light-dark .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+/* The slider */
+.light-dark .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color9);
+  border: 1px solid var(--color1);
+}
+.light-dark .slider:before {
+  position: absolute;
+  content: "";
+  height: calc(1.25em - 2px);
+  width: calc(1.25em - 2px);
+  left: 0;
+  bottom: 0;
+  background-color: var(--color2);
+  transition: transform var(--transition-short);
+}
+.light-dark input:checked + .slider:before {
+  transform: translateX(calc(2em - 1.25em));
+}
+/* Rounded sliders */
+.light-dark .slider.round {
+  border-radius: 1.25em;
+}
+.light-dark .slider.round:before {
+  border-radius: 100%;
+}
+
+
 
 /* Top Section */
 .intro em{
@@ -65,4 +147,62 @@ hr{
 }
 .playorder{
   display: none;
+}
+/* enter the cinema */
+#body .wrapper{
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
+}
+#body .wrapper, .header{
+  transform: none;
+  transition: transform var(--transition-long);
+}
+#body .wrapper.cinema-open, .cinema-open{
+  transform: translateY(-100%);
+  max-height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+
+
+/* Body */
+#body .wrapper{
+  background: var(--color4);;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+/* Cinema */
+.cinema-wrapper{
+  position: fixed;
+  background: var(--color1);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+.cinema-wrapper .cinema-button{
+  position: fixed;
+  top: var(--margin);
+  right: var(--margin);
+  z-index: 2;
+}
+.cinema-container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.cinema-container iframe{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }

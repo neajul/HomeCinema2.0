@@ -11,10 +11,16 @@ form:
         content:
           type: tab
           fields:
+            header.vimeo:
+              type: text
+              label: vimeo ID ℹ️
+              help: only the numbers, nothing else!
+              ordering@: header.title
+              style: vertical
             header.context:
               type: text
               label: menu [live from] text
-              ordering@: header.title
+              ordering@: header.vimeo
               style: vertical
             header.intro:
               type: text

@@ -43,6 +43,8 @@
 {% block javascripts %}
     {% do assets.addJs('jquery', 100) %}
     {% do assets.addJs('https://unpkg.com/feather-icons', 99) %}
+    {% do assets.addJs('https://player.vimeo.com/api/player.js', 98) %}
+    {% block extrajs %}{% endblock %}
     {% do assets.addJs('theme://js/index.js', {group:'bottom'}) %}
 {% endblock %}
 
@@ -51,7 +53,7 @@
     {{ assets.js()|raw }}
 {% endblock %}
 </head>
-<body id="top" class="{{ page.header.body_classes|e }} light">
+<body id="top" class="light">
 
 {% block header %}
     <div class="header">
@@ -64,12 +66,12 @@
             </span>
             <div class="light-dark">
               {# https://www.w3schools.com/howto/howto_css_switch.asp #}
+              <span class="label light"><i data-feather="sunrise"></i></span>
               <label class="switch">
-                <span class="label light"><i data-feather="sunrise"></i></span>
                 <input type="checkbox">
                 <span class="slider round"></span>
-                <span class="label dark"><i data-feather="sunset"></i></span>
               </label>
+              <span class="label dark"><i data-feather="sunset"></i></span>
             </div>
             <button type="button" name="menu">Menu</button>
             {% block header_navigation %}
@@ -102,7 +104,7 @@
                 {% endfor %}
               </ul>
               <div class="now-playing">
-                It's over for now, but not forever. <em>Home Cinema</em> will soon be back with more +++ 
+                It's over for now, but not forever. <em>Home Cinema</em> will soon be back with more +++
               </div>
 
               <hr>
@@ -122,8 +124,8 @@
                     <li>You have chosen the <u class="light">light</u><u class="dark">dark</u> mode</li>
                   </ul>
                   <ul class="enter">
-                    <li class="dark">
-                      <button type="button" name="cinema">[Enter Cinema]</button>
+                    <li>
+                      <button type="button" name="cinema" class="cinema-button">[Enter Cinema]</button>
                     </li>
                     <li>Please put your phone on silent</li>
                   </ul>
@@ -137,6 +139,15 @@
         {% block content %}{% endblock %}
         </div>
     </section>
+{% endblock %}
+
+{% block cinema %}
+<div class="cinema-wrapper">
+  <button type="button" name="cinema" class="cinema-button">[Exit Cinema]</button>
+  <div class="cinema-container">
+    <iframe id="cinema" src="https://player.vimeo.com/video/{{ aboutpage.header.vimeo }}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
 {% endblock %}
 
 {% block bottom %}
