@@ -32,6 +32,12 @@ $(function(){
   $('.cinema-button').click(function(){
     openCloseCinema();
   });
+
+  // open chat
+  $('.chat-button').click(function(){
+    $(this).toggleClass('chat-open');
+    $('.chat-container').toggleClass('chat-open');
+  });
 });
 
 

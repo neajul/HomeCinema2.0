@@ -143,9 +143,15 @@
 
 {% block cinema %}
 <div class="cinema-wrapper">
-  <button type="button" name="cinema" class="cinema-button">[Exit Cinema]</button>
+  <div class="cinema-interface">
+    <button type="button" name="cinema" class="cinema-button">[Exit Cinema]</button>
+    <button type="button" name="cinema" class="chat-button"></button>
+  </div>
   <div class="cinema-container">
     <iframe id="cinema" src="https://player.vimeo.com/video/{{ aboutpage.header.vimeo }}" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+  <div class="chat-container">
+    <iframe src="https://vimeo.com/live-chat/{{ aboutpage.header.vimeo }}" frameborder="0"></iframe>
   </div>
 </div>
 {% endblock %}
