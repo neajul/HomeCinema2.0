@@ -199,10 +199,46 @@ nav.main-nav{
   background: var(--color2);
   border: 1px solid var(--color1);
   color: var(--color9);
+  overflow: hidden;
+  white-space: nowrap;
+  display: flex;
+}
+.top-section .now-playing .playing-info{
+  white-space: nowrap;
+  width: max-content;
+  /* show the marquee just outside the paragraph */
+  will-change: transform;
+  animation: marquee 20s linear infinite;
+  margin-left: .25em;
+}
+.top-section .now-playing:hover .playing-info{
+  animation-play-state: paused
 }
 .top-section .now-playing em{
   color: var(--color7);
 }
+@keyframes marquee {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-100%, 0); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* enter the cinema */
 #body .wrapper{
   position: relative;

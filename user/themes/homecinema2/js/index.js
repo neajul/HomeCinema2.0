@@ -144,14 +144,14 @@ function checkCurrentOrNext(){
         // this is the current event!
         found = true;
         var sentence = "Now playing: <em>" + $(this).data("title") + "</em> by " + $(this).data("author") + " +++"
-        $('.now-playing').html(sentence);
+        $('.now-playing .playing-info').html(sentence);
       }
     } else if (startTimeDate > now && endTimeDate > now) {
       if (found == false) {
         // this is the next event!
         found = true;
         var sentence = "Next Up: <em>" + $(this).data("title") + "</em> by " + $(this).data("author") + " +++"
-        $('.now-playing').html(sentence);
+        $('.now-playing .playing-info').html(sentence);
       }
     }
   });
