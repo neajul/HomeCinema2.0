@@ -60,7 +60,8 @@
     <div class="header">
         <div class="wrapper padding">
             <a class="logo left" href="{{ home_url|e }}">
-                {{ config.site.title|e }}
+              <img class="light" src="{{ url('theme://images/logolight.svg')|e }}" alt="{{ config.site.title|e }}">
+              <img class="dark" src="{{ url('theme://images/logodark.svg')|e }}" alt="{{ config.site.title|e }}">
             </a>
             <span class="context">
               {{aboutpage.header.context}}
@@ -78,6 +79,7 @@
             <nav class="main-nav hide">
                 {% include 'partials/navigation.html.twig' %}
                 <button class="close-menu" type="button" name="close menu">×</button>
+                <img src="{{ url('theme://images/logob.svg')|e }}" alt="{{ config.site.title|e }}">
             </nav>
             {% endblock %}
         </div>

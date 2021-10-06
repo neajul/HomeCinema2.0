@@ -31,6 +31,7 @@ img{
 
   /* margins */
   --margin: 10px;
+  --marginhalf: calc( var(--margin) / 2 );
   --marg2x: calc( 2 * var(--margin) );
   --marg3x: calc( 3 * var(--margin) );
 
@@ -68,6 +69,9 @@ body {
   background: var(--color4);
   color: var(--color1);
 }
+a {
+  color: var(--color1);
+}
 hr{
   border: none;
   border-bottom: 1px solid var(--color1);
@@ -84,6 +88,12 @@ hr{
   display: none;
 }
 .dark .dashboard .mode .light{
+  display: none;
+}
+.light .logo.left .dark{
+  display: none;
+}
+.dark .logo.left .light{
   display: none;
 }
 
@@ -105,8 +115,24 @@ hr{
   align-items: center;
   padding: var(--margin);
 }
+.header .logo.left{
+  width: 7em;
+}
+.header .logo.left img{
+  margin-bottom: calc( var(--marg2x) * -1 );
+  max-width: 5em;
+}
 .header .context{
   display: none;
+  color: var(--color5);
+}
+.header #toggle-menu{
+  background: none;
+  border: none;
+  width: 7em;
+  text-align: right;
+  padding: 0;
+  margin: 0;
 }
 .header .light-dark{
   display: flex;
@@ -116,6 +142,12 @@ hr{
 .header .light-dark .label svg{
   height: 1.25em;
   margin-bottom: -.4em;
+}
+.label.light{
+  color: var(--color8);
+}
+.label.dark{
+  color: var(--color7);
 }
 /* dark/light switch */
 /* The switch - the box around the slider */
@@ -166,11 +198,47 @@ hr{
 nav.main-nav{
   position: fixed;
   top: var(--margin);
-  /* right: var(--margin); */
-  right: 100px;
-  padding: var(--margin);
+  right: var(--margin);
+  padding: var(--marg2x);
   background: var(--color7);
   border-radius: var(--margin);
+  max-width: calc( 100% - 2 * var(--margin));
+}
+nav.main-nav a{
+  text-decoration: none;
+}
+nav.main-nav .selected{
+  font-weight: bold;
+}
+nav.main-nav ul{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav.main-nav li{
+  margin-bottom: var(--marg2x);
+}
+nav.main-nav li:last-of-type{
+  margin-bottom: 0;
+}
+nav.main-nav img{
+  width: 100%;
+  margin-right: calc( var(--margin) * -1);
+  margin-left: var(--margin);
+  padding-left: 4em;
+  margin-top: -3em;
+}
+nav .close-menu{
+  font-size: var(--type-big);
+  position: absolute;
+  top: 0;
+  right: var(--marg2x);
+  height: calc(5 * var(--type-reg) - var(--marg2x));
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+  background: 0;
+  border: 0;
 }
 
 
@@ -186,9 +254,83 @@ nav.main-nav{
 .top-section{
   margin-top: 5em;
 }
+.top-section .dashboard{
+  background: var(--color3);
+  display: flex;
+  padding: var(--margin);
+  flex-wrap: wrap;
+}
+.top-section .intro{
+  font-size: var(--type-big);
+  width: 100%;
+}
+.top-section .navigation{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.top-section .navigation ul{
+  list-style: none;
+  padding: var(--margin) 0;
+  margin: var(--margin) 0;
+  text-align: center;
+}
+.top-section .navigation .mode{
+  order: -1;
+  width: 50%;
+  padding-right: .5em;
+}
+.top-section .navigation .mode .label{
+  height: 3em;
+  padding-bottom: .5em;
+}
+.top-section .navigation .mode svg{
+  height: 100%;
+  width: 100%;
+}
+.top-section .navigation .location{
+  order: 1;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.top-section .navigation .location li:first-of-type{
+  background: var(--color6);
+  border-radius: 100%;
+  padding: .75em 1.5em;
+  margin-bottom: .25em;
+  color: var(--color9);
+}
+.top-section .navigation .enter{
+  width: 50%;
+  padding-left: .5em;
+}
+.top-section .navigation .enter li:first-of-type{
+  height: 3em;
+  padding-bottom: .5em;
+}
+.top-section .navigation .enter button{
+  width: 100%;
+  height: 100%;
+  background: var(--color5);
+  border: 0;
+  color: var(--color9);
+}
+.top-section .intro p{
+  margin: 0;
+}
 .top-section .intro em{
   font-style: normal;
   color: var(--color5);
+}
+.top-section .location li:first-of-type{
+  font-size: var(--type-big);
+}
+.cinema-button, .chat-button{
+  font-size: var(--type-big);
 }
 .top-section .playorder{
   display: none;
@@ -202,6 +344,7 @@ nav.main-nav{
   overflow: hidden;
   white-space: nowrap;
   display: flex;
+  font-size: var(--type-big);
 }
 .top-section .now-playing .playing-info{
   white-space: nowrap;
@@ -221,24 +364,6 @@ nav.main-nav{
   0% { transform: translate(0, 0); }
   100% { transform: translate(-100%, 0); }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* enter the cinema */
 #body .wrapper{
   position: relative;
@@ -254,6 +379,16 @@ nav.main-nav{
   max-height: 100%;
   overflow: hidden;
   pointer-events: none;
+}
+
+
+
+/* Sub Pages */
+.project-content-container .screenings{
+  font-size: var(--type-big);
+}
+.project-content-container .meta-fields{
+  font-size: var(--type-small);
 }
 
 
@@ -315,7 +450,7 @@ nav.main-nav{
   position: fixed;
   top: 0;
   right: -30em;
-  transition: right var(--transition-short);
+  transition: right var(--transition-long);
 }
 .cinema-wrapper .chat-container.chat-open{
   width: 30em;
@@ -328,4 +463,78 @@ nav.main-nav{
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+
+
+/* Desktop */
+@media only screen and (min-width: 600px) {
+  :root{
+    --margin: 20px;
+    --type-small: 20px;
+    --type-reg: 20px;
+    --type-big: 30px;
+  }
+  /* header */
+  .header .logo.left{
+    width: 9em;
+  }
+  .header .context{
+    display: block;
+  }
+  .header #toggle-menu{
+    position: absolute;
+    right: var(--margin);
+    width: 4em;
+  }
+  .header .light-dark{
+    width: 9em;
+    padding-right: 4em;
+  }
+  /* Menu */
+  nav.main-nav{
+    width: 20em;
+    padding: var(--margin);
+  }
+  nav.main-nav li {
+    margin-bottom: var(--margin);
+  }
+  nav .close-menu {
+    right: var(--margin);
+  }
+  nav.main-nav img {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 4em;
+    margin-top: -3em;
+  }
+  /* top section */
+  .top-section {
+    margin-top: calc(5em - var(--marginhalf));
+  }
+  .top-section .now-playing {
+    margin: var(--marginhalf) 0;
+    padding: var(--marginhalf) 0;
+  }
+  hr{
+    margin: var(--marginhalf) 0;
+  }
+  .top-section .intro {
+    margin-bottom: 1em;
+  }
+  .top-section .navigation {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .top-section .navigation .location, .top-section .navigation .enter, .top-section .navigation .mode {
+    width: unset!important;
+    order: unset!important;
+    margin: 0;
+    padding: 0;
+  }
+  .top-section .navigation .enter li:first-of-type, .top-section .navigation .mode .label{
+    height: 4em;
+  }
+
 }

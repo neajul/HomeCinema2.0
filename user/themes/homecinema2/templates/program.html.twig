@@ -10,7 +10,7 @@
 {# start by looping through days #}
 {% for day in uniquedays %}
   <div class="table-header">
-    [{{day}}]
+    [Program {{day|date("d.m.Y")}}]
   </div>
 
   {# first line #}
@@ -41,7 +41,7 @@
               <ul>
                 <li class="block title">{{scheduleitem.title}}</li>
                 <li class="block authors">{{scheduleitem.authors}}</li>
-                <li class="block start">{{scheduleitem.time}}</li>
+                <li class="block start">{{scheduleitem.time|split(" ")|last}}</li>
                 <li class="block length">{{scheduleitem.length}} min</li>
               </ul>
             </li>
