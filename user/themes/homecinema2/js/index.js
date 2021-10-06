@@ -49,7 +49,6 @@ $(function(){
     $('*').bind('mousemove keydown scroll', function(){
       showHideInterface();
     });
-    $("body").trigger("mousemove");
   }
 });
 

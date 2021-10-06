@@ -236,10 +236,12 @@ nav.main-nav{
   top: 0;
   right: 0;
   height: 5em;
+  width: 100%;
   padding: var(--margin);
   z-index: 2;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   opacity: 1;
   transition: opacity var(--transition-short);
 }
