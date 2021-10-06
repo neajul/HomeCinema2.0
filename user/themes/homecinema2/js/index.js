@@ -3,6 +3,11 @@ var now = new Date();
 var open = false;
 var player = new Vimeo.Player(document.getElementById('cinema'));
 
+// idle function for cinema
+var idleTimer = null;
+var idleState = false;
+var idleWait = 2000;
+
 
 
 // on load
@@ -38,11 +43,44 @@ $(function(){
     $(this).toggleClass('chat-open');
     $('.chat-container').toggleClass('chat-open');
   });
+
+  // hide cinema buttons after a while (only desktop)
+  if (!isTouchDevice()) {
+    $('*').bind('mousemove keydown scroll', function(){
+      showHideInterface();
+    });
+    $("body").trigger("mousemove");
+  }
 });
 
 
 
-// functions
+// FUNctions
+
+// check if we're on phone
+function isTouchDevice() {
+  return (('ontouchstart' in window) ||
+    (navigator.maxTouchPoints > 0) ||
+    (navigator.msMaxTouchPoints > 0));
+}
+
+// fade the chat buttons in out out
+function showHideInterface(){
+  clearTimeout(idleTimer);
+  if (idleState == true) {
+    // Reactivated event
+    $('.cinema-interface').removeClass('fade-out');
+  }
+
+  idleState = false;
+  idleTimer = setTimeout(function () {
+    // Idle Event
+    $('.cinema-interface').addClass('fade-out');
+    idleState = true;
+  }, idleWait);
+}
+
+// open or close the cinema
 function openCloseCinema(){
   // toggle the classes
   $('.header, #body .wrapper').toggleClass('cinema-open');

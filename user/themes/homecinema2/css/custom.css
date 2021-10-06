@@ -240,6 +240,11 @@ nav.main-nav{
   z-index: 2;
   display: flex;
   align-items: center;
+  opacity: 1;
+  transition: opacity var(--transition-short);
+}
+.cinema-wrapper .cinema-interface.fade-out{
+  opacity: 0;
 }
 .cinema-wrapper .chat-button::before{
   content:"[Open Chat]"
