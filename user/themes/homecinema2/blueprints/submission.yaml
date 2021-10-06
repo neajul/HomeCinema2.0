@@ -29,8 +29,12 @@ form:
                   type: text
                   label: Author
                   style: small
-                header.year:
+                header.country:
                   ordering@: header.author
+                  type: text
+                  label: Country of Production
+                header.year:
+                  ordering@: header.country
                   type: text
                   label: Year
                 header.duration:
@@ -54,12 +58,16 @@ form:
               title: Content
               underline: true
               ordering@: meta
+            header.trailer:
+              type: text
+              label: Link for trailer (optional)
+              ordering@: content
 
             credits:
               type: section
               title: Credits
               underline: true
-              ordering@: content
+              ordering@: header.trailer
               fields:
                 header.credits:
                   type: list

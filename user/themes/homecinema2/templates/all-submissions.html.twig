@@ -49,13 +49,13 @@
             {{ author }}
           </li>
           {# department #}
-          <li class="department-start">
-            {% if submission.header.department|length %}
-              {% set department = submission.header.department %}
+          <li class="department-start" title="{{submission.header.department}}">
+            {% if submission.header.departmentabbrev|length %}
+              {% set departmentabbrev = submission.header.departmentabbrev %}
             {% else %}
-              {% set department = empty %}
+              {% set departmentabbrev = empty %}
             {% endif %}
-            {{ department }}
+            {{ departmentabbrev }}
           </li>
           {# duration #}
           <li class="duration">
