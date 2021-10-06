@@ -34,14 +34,14 @@
 
 
         {# block, so we start creating another nested table  #}
-        <li class="table-line">
+        <li class="block table-line">
           <ul class="block-table">
             {# first line with block info #}
             <li class="block table-line first">
               <ul>
                 <li class="block title">{{scheduleitem.title}}</li>
                 <li class="block authors">{{scheduleitem.authors}}</li>
-                <li class="block start">{{scheduleitem.time|split(" ")|last}}</li>
+                <li class="block department-start">{{scheduleitem.time|split(" ")|last}}</li>
                 <li class="block length">{{scheduleitem.length}} min</li>
               </ul>
             </li>
