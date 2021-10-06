@@ -71,8 +71,12 @@ form:
                       type: text
                       label: category
                     .entries:
-                      type: textarea
+                      type: list
                       label: entries
+                      fields:
+                        .entry:
+                          type: text
+                          label: entry
 
             artist:
               type: section
@@ -84,7 +88,12 @@ form:
                   style: small
                   type: text
                   label: department ℹ️
-                  help: departments abbreviated when possible pls (SIS, not studio for immediate spaces)
+                  help: full name of department (Studio for Immediate Spaces for example)
+                header.departmentabbrev:
+                  style: small
+                  type: text
+                  label: department abbreviated ℹ️
+                  help: if it applies, abbreviated department (SIS, not studio for immediate spaces)
                 header.artistbio:
                   style: vertical
                   type: editor
