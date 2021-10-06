@@ -1,88 +1,120 @@
 {% extends 'partials/base.html.twig' %}
 
+{% block extracss %}
+    {% do assets.addCss('https://unpkg.com/swiper/swiper-bundle.min.css', 99) %}
+{% endblock %}
+
+{% block extrajs %}
+  {% do assets.addJs('https://unpkg.com/swiper/swiper-bundle.min.js', 97) %}
+  {% do assets.addJs('theme://js/submission.js', 96) %}
+{% endblock %}
+
 {% block content %}
-  <div class="main-content swiper">
-    <div class="swiper-wrapper">
-      {% for filename in page.header.media_order | split(',') %}
-        {{ page.media[filename].html(page.menu, page.menu, 'swiper-slide')|raw }}
-      {% endfor %}
+  {% block swiper %}
+    {# swiper only when we have more than one image #}
+    {% if page.header.media_order|length > 1 %}
+      {% set swiper = "swiper" %}
+    {% endif %}
+    {# add main image, with optional swiper class #}
+    <div class="main-content {{swiper}}">
+      <div class="swiper-wrapper">
+        {% for filename in page.header.media_order | split(',') %}
+          {{ page.media[filename].html(page.menu, page.menu, 'swiper-slide')|raw }}
+        {% endfor %}
+      </div>
     </div>
-  </div>
-  <div class="project title-bar">
-    <button type="button" name="button">Left</button>
-    <span>
-      <span class="project-title">
-        {{page.title}}
-      </span>
-      by
-      <span class="project-author">
-        {{page.header.author}}
-      </span>
-    </span>
-    <button type="button" name="button">Right</button>
-  </div>
+    <div class="project title-bar">
+      {# navigation only if swiper #}
+      {% if page.header.media_order|length > 1 %}
+        <button type="button" name="button" class="custom-swiper-button-prev">Left</button>
+      {% endif %}
+      {% block projectbarcontent %}
+        <span>
+          <span class="project-title">
+            {{page.title}}
+          </span>
+          by
+          <span class="project-author">
+            {{page.header.author}}
+          </span>
+        </span>
+      {% endblock %}
+      {# navigation only if swiper #}
+      {% if page.header.media_order|length > 1 %}
+        <button type="button" name="button" class="custom-swiper-button-next">Right</button>
+      {% endif %}
+    </div>
+  {% endblock %}
 
   <div class="project-content-container">
-
-    {# screenings #}
-    <ul class="screenings">
-      <li>Screenings</li>
-      {# {% for projectscheduleitem in schedule if item.title == page.title %} #}
-      {% for projectscheduleitem in schedule %}
-        {# check if we deal with a block or single item #}
-        {% if projectscheduleitem.items|length > 1 %}
-          {# block, have to check if this item is included in the list #}
-          {% for item in projectscheduleitem.items if item == page.route %}
-            <li>{{projectscheduleitem.time|date("l, F jS, Y—H:i")}}</li>
-          {% endfor %}
-        {% else %}
-          {# single, have to check if this is the item #}
-          {% if projectscheduleitem.items|first == page.route %}
-            <li>{{projectscheduleitem.time|date("l, F jS, Y—H:i")}}</li>
+    {% block screenings %}
+      {# screenings #}
+      <ul class="screenings">
+        <li>Screenings</li>
+        {# {% for projectscheduleitem in schedule if item.title == page.title %} #}
+        {% for projectscheduleitem in schedule %}
+          {# check if we deal with a block or single item #}
+          {% if projectscheduleitem.items|length > 1 %}
+            {# block, have to check if this item is included in the list #}
+            {% for item in projectscheduleitem.items if item == page.route %}
+              <li>{{projectscheduleitem.time|date("l, F jS, Y—H:i")}}</li>
+            {% endfor %}
+          {% else %}
+            {# single, have to check if this is the item #}
+            {% if projectscheduleitem.items|first == page.route %}
+              <li>{{projectscheduleitem.time|date("l, F jS, Y—H:i")}}</li>
+            {% endif %}
           {% endif %}
-        {% endif %}
-      {% endfor %}
-    </ul>
+        {% endfor %}
+      </ul>
+    {% endblock %}
 
-    <ul class="project-meta-table">
-      <li class="title">{{ page.title }}</li>
-      <li class="author">by {{ page.header.author }}</li>
-      <li class="meta-fields">
-        <ul>
-          {% if page.header.country|length or page.header.year|length %}
-            <li class="country-year">
-              {{ page.header.country }}
-              {% if page.header.country|length and page.header.year|length %}, {% endif %}
-              {{ page.header.year }}
-            </li>
-          {% endif %}
-            <li class="duration">{{ page.header.duration }} min</li>
-          {% if page.header.languagespoken|length or page.header.languagesubs|length %}
-            <li class="language">
-              {{ page.header.languagespoken }}
-              {% if page.header.languagespoken|length and page.header.languagesubs|length %} with {% endif %}
-              {{ page.header.languagesubs }}
-              {% if page.header.languagesubs|length %} subs{% endif %}
-            </li>
-          {% endif %}
-          {% if page.header.trailer %}
-            <li class="trailer">
-              <a href="{{page.header.trailer}}" target="_blank">
-                <button type="button" name="button">[Trailer]</button>
-              </a>
-            </li>
-          {% endif %}
-        </ul>
-      </li>
-    </ul>
+    {% block metatable %}
+      <ul class="project-meta-table">
+        <li class="title">{{ page.title }}</li>
+        <li class="author">by {{ page.header.author }}</li>
+        <li class="meta-fields">
+          <ul>
+            {% if page.header.country|length or page.header.year|length %}
+              <li class="country-year">
+                {{ page.header.country }}
+                {% if page.header.country|length and page.header.year|length %}, {% endif %}
+                {{ page.header.year }}
+              </li>
+            {% endif %}
+              <li class="duration">{{ page.header.duration }} min</li>
+            {% if page.header.languagespoken|length or page.header.languagesubs|length %}
+              <li class="language">
+                {{ page.header.languagespoken }}
+                {% if page.header.languagespoken|length and page.header.languagesubs|length %} with {% endif %}
+                {{ page.header.languagesubs }}
+                {% if page.header.languagesubs|length %} subs{% endif %}
+              </li>
+            {% endif %}
+            {% if page.header.trailer %}
+              <li class="trailer">
+                <a href="{{page.header.trailer}}" target="_blank">
+                  <button type="button" name="button">[Trailer]</button>
+                </a>
+              </li>
+            {% endif %}
+            <li>{{page.header.author}} graduated from {{page.header.department}}</li>
+          </ul>
+        </li>
+      </ul>
+    {% endblock %}
 
-    <div class="project-description">
-      {{ page.content|raw }}
-    </div>
+    {% block description %}
+      <div class="project-description">
+        {{ page.content|raw }}
+      </div>
+    {% endblock %}
 
-    <div class="artist-bio">
-      {{ page.header.artistbio|markdown|raw }}
-    </div>
+    {% block artistbio %}
+      <div class="artist-bio">
+        {{ page.header.artistbio|markdown|raw }}
+      </div>
+    {% endblock %}
 
     {% if page.header.credits|length %}
       <ul class="credits">
@@ -98,6 +130,7 @@
         {% endfor %}
       </ul>
     {% endif %}
-    
+
   </div>
+
 {% endblock %}

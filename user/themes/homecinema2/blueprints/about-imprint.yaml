@@ -11,19 +11,60 @@ form:
         content:
           type: tab
           fields:
-            header.vimeo:
-              type: text
-              label: vimeo ID ℹ️
-              help: only the numbers, nothing else!
+
+            global:
+              type: section
+              title: Global Things
+              underline: true
               ordering@: header.title
-              style: vertical
-            header.context:
-              type: text
-              label: menu [live from] text
-              ordering@: header.vimeo
-              style: vertical
-            header.intro:
-              type: text
-              label: Shortened Intro for top section
-              ordering@: header.context
-              style: vertical
+              fields:
+                header.vimeo:
+                  type: text
+                  label: vimeo ID ℹ️
+                  help: only the numbers, nothing else!
+                  ordering@: header.title
+                  style: vertical
+                header.context:
+                  type: text
+                  label: menu [live from] text
+                  ordering@: header.vimeo
+                  style: vertical
+                header.intro:
+                  type: text
+                  label: Shortened Intro for top section
+                  ordering@: header.context
+                  style: vertical
+
+            about:
+              type: section
+              title: About Us
+              underline: true
+              ordering@: global
+
+            credits:
+              type: section
+              title: Credits
+              underline: true
+              ordering@: content
+              fields:
+                header.credits:
+                  type: list
+                  label: Credits ℹ️
+                  style: vertical
+                  help: Click 'add item' for each category in the credits (directed by, starring), and then add all entries for that entry in that field
+                  fields:
+                    .category:
+                      type: text
+                      label: category
+                    .entries:
+                      type: list
+                      label: entries
+                      fields:
+                        .entry:
+                          type: text
+                          label: entry
+            images:
+              type: section
+              title: Images
+              underline: true
+              ordering@: credits
