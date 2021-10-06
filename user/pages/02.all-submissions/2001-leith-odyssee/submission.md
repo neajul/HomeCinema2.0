@@ -9,7 +9,7 @@ credits:
             -
                 entry: 'Arthur Boer'
             -
-                entry: 'Carmen Dusmet'
+                entry: '[Carmen Dusmet](https://link.com)'
     -
         category: Assistant
         entries:

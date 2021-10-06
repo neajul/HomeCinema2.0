@@ -3,7 +3,7 @@ title: About
 intro: 'Welcome to the Program of Home Cinema, streaming live to you from the <em>Sandberg Graduation Show 2021</em> at Het Hem. You can find out more about this project <a href="/about">here</a>.'
 context: '[Live from the Sandberg Graduation Show 2021]'
 vimeo: '624453371'
-media_order: 'original_75b2ad6a6cd7f61f393ddc7265a110ab.jpg,original_2785cc978a20e1296c80699444b5c0a3.png'
+media_order: original_2785cc978a20e1296c80699444b5c0a3.png
 credits:
     -
         category: 'Project by'

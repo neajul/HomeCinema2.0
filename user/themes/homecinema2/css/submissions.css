@@ -1,0 +1,221 @@
+/* swiper/slider */
+.main-images{
+  position: relative;
+  width: 100%;
+  padding-bottom: calc( 100% / 16 * 9 );
+}
+.swiper-wrapper{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.swiper-slide{
+  object-fit: contain;
+  background: var(--color1);
+}
+
+
+
+/* title bar */
+.project.title-bar{
+  padding: var(--margin) 0;
+  background: var(--color2);
+  border: 1px solid var(--color1);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.project.title-bar button{
+  display: none;
+}
+.project.title-bar .by, .project.title-bar .project-author{
+  display: none;
+}
+.project.title-bar .project-title{
+  font-style: italic;
+  color: var(--color7);
+}
+
+
+
+/* screenings */
+.project-content-container .screenings{
+  list-style: none;
+  background: var(--color7);
+  padding: var(--marg2x);
+  margin: var(--margin) 0;
+  border-radius: var(--margin);
+}
+.project-content-container .screenings li{
+  margin-top: var(--marginhalf);
+}
+.project-content-container .screenings li:first-of-type{
+  margin-top: 0;
+  font-weight: bold;
+}
+
+
+
+/* metadata */
+.project-meta-table{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--color1);
+}
+.project-meta-table>li{
+  border: 1px solid var(--color1);
+  border-top: none;
+  padding: var(--margin);
+}
+.project-meta-table .meta-fields{
+  padding: 0;
+  font-size: var(--type-small);
+}
+.project-meta-table .meta-fields ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.project-meta-table .meta-fields ul li{
+  flex-grow: 1;
+  border-right: 1px solid var(--color1);
+  padding: calc(var(--margin) + 4px);
+  padding-right: 0;
+  display: flex;
+  align-items: center;
+}
+.project-meta-table .meta-fields .trailer{
+  border-right: 0;
+  flex-grow: 0;
+  padding: var(--marginhalf);
+}
+.project-meta-table .meta-fields .trailer a,
+.project-meta-table .meta-fields .trailer button
+{
+  height: 100%;
+}
+.project-meta-table .meta-fields .trailer button
+{
+  background: var(--color5);
+  border: none;
+  font-weight: bold;
+  color: var(--color9);
+}
+
+
+
+/* credits */
+.credits{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.credit-item ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1em;
+}
+.credit-item .category{
+  font-weight: bold;
+}
+.credit-item p{
+  margin: 0;
+}
+
+
+
+@media only screen and (min-width: 600px) {
+  .project.title-bar{
+    justify-content: space-between;
+    padding: 0;
+  }
+  .project.title-bar>span{
+    display: flex;
+    align-items: center;
+    font-size: var(--type-big);
+    width: 100%;
+    justify-content: center;
+  }
+  .project.title-bar>span span{
+    margin-left: .25em;
+  }
+  .project.title-bar .navbutt{
+    display: block;
+    padding: 0 var(--margin);
+    background: 0;
+    border: 0;
+    margin: calc( var(--marginhalf) * .5 ) 0;
+  }
+  .project.title-bar .navbutt img{
+    height: calc( var(--type-big) + var(--marginhalf) );
+  }
+  .project.title-bar .by, .project.title-bar .project-author{
+    display: block;
+  }
+
+  .screenings{
+    font-size: var(--type-big);
+  }
+
+  .project-meta-table .meta-fields{
+    font-size: var(--type-reg);
+  }
+  .project-meta-table .title,
+  .project-meta-table .author{
+    display: none;
+  }
+  .project-meta-table .meta-fields ul li{
+    padding: calc(var(--margin) );
+  }
+}
+
+
+
+
+@media only screen and (min-width: 900px) {
+  .project-content-container .screenings{
+    font-size: var(--type-reg);
+    padding: var(--margin);
+    width: fit-content;;
+  }
+}
+
+
+
+
+@media only screen and (min-width: 1100px) {
+  .project.title-bar{
+    margin-bottom: var(--margin);
+  }
+  .project-content-container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .project-content-container>*{
+    width: calc(50% - var(--marginhalf));
+  }
+  .project-content-container .screenings{
+    order: -1;
+    margin-top: 0;
+  }
+  .project-content-container .project-meta-table{
+    order: -1;
+    margin: var(--margin) 0;
+    margin-top: 0;
+  }
+  .project-content-container .text-container{
+    order: 1;
+  }
+  .project-content-container .text-container p:first-of-type{
+    margin-top: 0;
+  }
+}

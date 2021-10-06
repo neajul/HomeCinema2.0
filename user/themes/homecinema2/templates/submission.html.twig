@@ -2,6 +2,7 @@
 
 {% block extracss %}
     {% do assets.addCss('https://unpkg.com/swiper/swiper-bundle.min.css', 99) %}
+    {% do assets.addCss('theme://css/submissions.css', 80) %}
 {% endblock %}
 
 {% block extrajs %}
@@ -12,11 +13,11 @@
 {% block content %}
   {% block swiper %}
     {# swiper only when we have more than one image #}
-    {% if page.header.media_order|length > 1 %}
+    {% if page.header.media_order | split(',')|length > 1 %}
       {% set swiper = "swiper" %}
     {% endif %}
     {# add main image, with optional swiper class #}
-    <div class="main-content {{swiper}}">
+    <div class="main-images {{swiper}}">
       <div class="swiper-wrapper">
         {% for filename in page.header.media_order | split(',') %}
           {{ page.media[filename].html(page.menu, page.menu, 'swiper-slide')|raw }}
@@ -25,23 +26,27 @@
     </div>
     <div class="project title-bar">
       {# navigation only if swiper #}
-      {% if page.header.media_order|length > 1 %}
-        <button type="button" name="button" class="custom-swiper-button-prev">Left</button>
+      {% if page.header.media_order | split(',')|length > 1 %}
+        <button type="button" name="button" class="navbutt custom-swiper-button-prev" alt="previous slide">
+          <img src="{{ url('theme://images/handleft.svg')|e }}">
+        </button>
       {% endif %}
       {% block projectbarcontent %}
         <span>
           <span class="project-title">
             {{page.title}}
           </span>
-          by
+          <span class="by">by</span>
           <span class="project-author">
             {{page.header.author}}
           </span>
         </span>
       {% endblock %}
       {# navigation only if swiper #}
-      {% if page.header.media_order|length > 1 %}
-        <button type="button" name="button" class="custom-swiper-button-next">Right</button>
+      {% if page.header.media_order | split(',')|length > 1 %}
+        <button type="button" name="button" class="navbutt custom-swiper-button-next" alt="next slide">
+          <img src="{{ url('theme://images/handright.svg')|e }}">
+        </button>
       {% endif %}
     </div>
   {% endblock %}
@@ -77,18 +82,13 @@
           <ul>
             {% if page.header.country|length or page.header.year|length %}
               <li class="country-year">
-                {{ page.header.country }}
-                {% if page.header.country|length and page.header.year|length %}, {% endif %}
-                {{ page.header.year }}
+                {{ page.header.country }}{% if page.header.country|length and page.header.year|length %}, {% endif %}{{ page.header.year }}
               </li>
             {% endif %}
               <li class="duration">{{ page.header.duration }} min</li>
             {% if page.header.languagespoken|length or page.header.languagesubs|length %}
               <li class="language">
-                {{ page.header.languagespoken }}
-                {% if page.header.languagespoken|length and page.header.languagesubs|length %} with {% endif %}
-                {{ page.header.languagesubs }}
-                {% if page.header.languagesubs|length %} subs{% endif %}
+                {{ page.header.languagespoken }}{% if page.header.languagespoken|length and page.header.languagesubs|length %} with {% endif %}{{ page.header.languagesubs }}{% if page.header.languagesubs|length %} subs{% endif %}
               </li>
             {% endif %}
             {% if page.header.trailer %}
@@ -104,17 +104,19 @@
       </ul>
     {% endblock %}
 
-    {% block description %}
-      <div class="project-description">
-        {{ page.content|raw }}
-      </div>
-    {% endblock %}
+    <div class="text-container">
+      {% block description %}
+        <div class="project-description">
+          {{ page.content|raw }}
+        </div>
+      {% endblock %}
 
-    {% block artistbio %}
-      <div class="artist-bio">
-        {{ page.header.artistbio|markdown|raw }}
-      </div>
-    {% endblock %}
+      {% block artistbio %}
+        <div class="artist-bio">
+          {{ page.header.artistbio|markdown|raw }}
+        </div>
+      {% endblock %}
+    </div>
 
     {% if page.header.credits|length %}
       <ul class="credits">
