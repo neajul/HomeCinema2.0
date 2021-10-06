@@ -1,0 +1,112 @@
+enabled: true
+route: /admin
+cache_enabled: true
+theme: grav
+logo_text: 'Home Cinema'
+body_classes: null
+content_padding: true
+twofa_enabled: true
+sidebar:
+  activate: tab
+  hover_delay: 100
+  size: auto
+dashboard:
+  days_of_stats: 7
+widgets_display:
+  dashboard-maintenance: 'true'
+  dashboard-statistics: 'true'
+  dashboard-notifications: 'true'
+  dashboard-feed: 'true'
+  dashboard-pages: 'true'
+pages:
+  show_parents: both
+  show_modular: true
+  parents_levels: null
+session:
+  timeout: 1800
+edit_mode: normal
+frontend_preview_target: inline
+show_github_msg: true
+pages_list_display_field: title
+admin_icons: line-awesome
+enable_auto_updates_check: true
+notifications:
+  feed: true
+  dashboard: true
+  plugins: true
+  themes: true
+popularity:
+  enabled: true
+  ignore:
+    - '/test*'
+    - /modular
+  history:
+    daily: '30'
+    monthly: '12'
+    visitors: '20'
+whitelabel:
+  quicktray_recompile: false
+  codemirror_theme: paper
+  codemirror_fontsize: md
+  codemirror_md_font: sans
+  logo_custom:
+    user/assets/logo-01.png:
+      name: logo-01.png
+      type: image/png
+      size: 25345
+      path: user/assets/logo-01.png
+  logo_login:
+    user/assets/logo-01.png:
+      name: logo-01.png
+      type: image/png
+      size: 25345
+      path: user/assets/logo-01.png
+  color_scheme:
+    accents:
+      primary-accent: notice
+      secondary-accent: button
+      tertiary-accent: critical
+    colors:
+      logo-bg: '#fff0e9'
+      logo-link: '#ff7b22'
+      nav-bg: '#fff0e9'
+      nav-text: '#693220'
+      nav-link: '#000000'
+      nav-selected-bg: '#fcd3da'
+      nav-selected-link: '#693220'
+      nav-hover-bg: '#ffffff'
+      nav-hover-link: '#00ff67'
+      toolbar-bg: '#fff0e9'
+      toolbar-text: '#693220'
+      page-bg: '#fff0e9'
+      page-text: '#693220'
+      page-link: '#ff1a41'
+      content-bg: '#fcd3da'
+      content-text: '#000000'
+      content-link: '#693220'
+      content-link2: '#ff7b22'
+      content-header: '#693220'
+      content-tabs-bg: '#a1d2ff'
+      content-tabs-text: '#693220'
+      button-bg: '#00ff67'
+      button-text: '#000000'
+      notice-bg: '#a1d2ff'
+      notice-text: '#ffffff'
+      update-bg: '#ff7b22'
+      update-text: '#ffffff'
+      critical-bg: '#ff1a41'
+      critical-text: '#ffffff'
+      content-highlight: '#ffffd7'
+    name: null
+  custom_footer: null
+  custom_css: null
+  custom_presets: null
+show_beta_msg: null
+pagemedia:
+  resize_width: 0
+  resize_height: 0
+  res_min_width: 0
+  res_min_height: 0
+  res_max_width: 0
+  res_max_height: 0
+  resize_quality: 0.8

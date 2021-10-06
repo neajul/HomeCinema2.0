@@ -1,0 +1,15 @@
+state: enabled
+email: hellohomecinema@gmail.com
+fullname: 'Homie Cinema'
+language: en
+content_editor: default
+twofa_enabled: false
+twofa_secret: 5HJYVBLLQGLBJOWHUYE6MJ7LOEQXXECI
+avatar: {  }
+hashed_password: $2y$10$WLvDvlGi3CKo00IGhq5lgeAY5EdVeEUrkL8lck8/fyfOFbjErYkXm
+access:
+  site:
+    login: true
+  admin:
+    login: true
+    pages: true
