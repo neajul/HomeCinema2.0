@@ -1,8 +1,8 @@
 title: 'Home Cinema'
 default_lang: en
 author:
-  name: 'Joe Bloggs'
-  email: joe@example.com
+  name: 'Home Cinema'
+  email: submissions@homecinema.video
 taxonomies:
   - category
   - tag

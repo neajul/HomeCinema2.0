@@ -32,6 +32,20 @@ $(function(){
   $('#toggle-menu').click(function(){
     $('.main-nav').toggleClass('hide');
   });
+  $('.close-menu').click(function(){
+    $('.main-nav').addClass('hide');
+  });
+  // check if menu is visible, and add click anywhere else to close it
+  $(document).click (function (e) {
+    // first check that we are not clicking the menu button
+    if (e.target != $('#toggle-menu')[0]) {
+      // then check if menu is open, and if that we are not clicking it
+      if ($('.main-nav').is(':visible') && e.target != $('.main-nav')[0]) {
+        // hide menu
+        $('.main-nav').addClass('hide');
+      }
+    }
+  });
 
   // add open cinema function
   $('.cinema-button').click(function(){
