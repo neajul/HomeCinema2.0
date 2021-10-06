@@ -468,7 +468,7 @@ nav .close-menu{
 
 
 
-/* Desktop */
+/* bigger */
 @media only screen and (min-width: 600px) {
   /* top section */
   .top-section {
@@ -516,6 +516,10 @@ nav .close-menu{
     margin-top: -3em;
   }
 }
+
+
+
+/* actual desktop */
 @media only screen and (min-width: 900px) {
   :root{
     --margin: 20px;
@@ -538,5 +542,22 @@ nav .close-menu{
   .header .light-dark{
     width: 9em;
     padding-right: 4em;
+  }
+}
+
+
+
+/* max width */
+@media only screen and (min-width: 1600px) {
+  .header .wrapper{
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: var(--margin) 0;
+  }
+  .header #toggle-menu{
+    right: calc((100% - 1600px) / 2);
+  }
+  #body .wrapper{
+    padding: var(--margin) calc( (100% - 1600px) / 2);
   }
 }
