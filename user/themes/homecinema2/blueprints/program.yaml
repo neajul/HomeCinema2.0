@@ -28,16 +28,18 @@ form:
                   label: add schedule items
                   fields:
                     .items:
-                      type: pages
-                      label: select items
-                      start_route: 'all_submissions'
-                      show_all: false
-                      show_modular: false
-                      show_root: false
-                      help: select one or more items for this schedule item
-                      multiple: true
-                      array: true
-                      validate.type: array
+                      type: list
+                      label: add item
+                      fields:
+                        .item:
+                          type: pages
+                          label: select items
+                          start_route: 'all_submissions'
+                          show_all: false
+                          show_modular: false
+                          show_root: false
+                          help: select one a movie for this item
+                          multiple: false
                     .time:
                       type: datetime
                       label: start time/date

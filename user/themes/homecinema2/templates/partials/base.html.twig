@@ -99,10 +99,9 @@
                     <li data-time="{{item.time}}" data-duration="{{item.length}}" data-title="{{item.title}}" data-author="{{item.authors}}"></li>
                   {% else %}
                     {# single item #}
-                    {% set project = pages.find(item.items|first) %}
+                    {% set project = pages.find(item.items|first.item) %}
                     <li data-time="{{item.time}}" data-duration="{{project.header.duration}}" data-title="{{project.title}}" data-author="{{project.header.author}}"></li>
                   {% endif %}
-                  {{dump(item)}}
 
                 {% endfor %}
               </ul>

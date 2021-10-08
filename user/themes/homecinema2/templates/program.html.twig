@@ -27,6 +27,8 @@
 
     {# now create a line for each submission on that day #}
     {% for scheduleitem in schedule if scheduleitem.time|split(" ")|first == day %}
+
+
       {# check if it's a block or just a single movie #}
       {% if scheduleitem.items|length > 1 %}
 
@@ -47,8 +49,9 @@
             </li>
             {# now we loop through the movies in the block, and display them #}
             {% for blockitem in scheduleitem.items %}
+
               <li class="block table-line">
-                {% set blocksubmission = pages.find(blockitem) %}
+                {% set blocksubmission = pages.find(blockitem.item) %}
 
                 <a href="{{blocksubmission.url}}">
                   <ul>
@@ -101,7 +104,7 @@
 
       {% else %}
         {# single, so find page, and then just fill in #}
-        {% set submission = pages.find(scheduleitem.items|first) %}
+        {% set submission = pages.find(scheduleitem.items|first.item) %}
         <li class="table-line">
           <a href="{{submission.url}}">
             <ul>
