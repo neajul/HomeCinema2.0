@@ -1,7 +1,7 @@
 // on load
 $(function(){
   // add sorting function to table headers
-  $('.table-line.first li').not('.img').click(function(){
+  $('.movie-table>.table-line.first li').not('.img').click(function(){
     changeActiveCategory($(this));
   });
 });
@@ -35,7 +35,7 @@ function changeActiveCategory(item){
 
 // sort items in list alphabetically
 function sortItems(context, condition, direction){
-  var listitems = context.children('.table-line').not('.first').get();
+  var listitems = context.children('.table-line.sort').get();
   listitems.sort(function(a, b) {
     // default: desc
     var item1 = a;
@@ -46,8 +46,8 @@ function sortItems(context, condition, direction){
       var item2 = a;
     }
     // sort items, also take numbers into accounts as actual numbers
-    return $(item1).find('.' + condition + ' *').not('.block').eq(0).text().toUpperCase().localeCompare(
-      $(item2).find('.' + condition + ' *').not('.block').eq(0).text().toUpperCase(), undefined, {
+    return $(item1).find('.' + condition + '.sorting-argument').eq(0).text().trim().toUpperCase().replace(" MIN", "").localeCompare(
+      $(item2).find('.' + condition + '.sorting-argument').eq(0).text().trim().toUpperCase().replace(" MIN", ""), undefined, {
         numeric: true,
         sensitivity: 'base'
       }

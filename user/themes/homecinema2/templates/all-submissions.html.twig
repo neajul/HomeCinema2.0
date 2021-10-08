@@ -15,14 +15,14 @@
       <ul>
         <li class="img">img</li>
         <li class="title">title</li>
-        <li class="author">author</li>
-        <li class="department selected asc">department</li>
+        <li class="author">artist</li>
+        <li class="department-start selected asc">department</li>
         <li class="duration">duration</li>
       </ul>
     </li>
   {# loop through all submission #}
   {% for submission in page.children.order('header.department','asc') if submission.template == 'submission'%}
-    <li class="table-line">
+    <li class="table-line sort">
       <a href="{{submission.url}}">
         <ul>
           {# img #}
@@ -36,11 +36,11 @@
             {% endif %}
           </li>
           {# title #}
-          <li class="title">
+          <li class="title sorting-argument">
             {{submission.title}}
           </li>
           {# author #}
-          <li class="author">
+          <li class="author sorting-argument">
             {% if submission.header.author|length %}
               {% set author = submission.header.author %}
             {% else %}
@@ -49,7 +49,7 @@
             {{ author }}
           </li>
           {# department #}
-          <li class="department-start" title="{{submission.header.department}}">
+          <li class="department-start sorting-argument" title="{{submission.header.department}}">
             {% if submission.header.departmentabbrev|length %}
               {% set departmentabbrev = submission.header.departmentabbrev %}
             {% else %}
@@ -58,7 +58,7 @@
             {{ departmentabbrev }}
           </li>
           {# duration #}
-          <li class="duration">
+          <li class="duration sorting-argument">
             {% if submission.header.duration|length %}
               {% set duration = submission.header.duration ~ " min" %}
             {% else %}

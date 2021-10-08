@@ -19,9 +19,9 @@
       <ul>
         <li class="img">img</li>
         <li class="title">title</li>
-        <li class="author">author</li>
+        <li class="author">artist</li>
         <li class="department-start selected asc">start</li>
-        <li class="length">duration</li>
+        <li class="duration">duration</li>
       </ul>
     </li>
 
@@ -36,15 +36,15 @@
 
 
         {# block, so we start creating another nested table  #}
-        <li class="block table-line">
+        <li class="block table-line sort">
           <ul class="block-table">
             {# first line with block info #}
             <li class="block table-line first">
               <ul>
-                <li class="block title">{{scheduleitem.title}}</li>
-                <li class="block authors">{{scheduleitem.authors}}</li>
-                <li class="block department-start">{{scheduleitem.time|split(" ")|last}}</li>
-                <li class="block length">{{scheduleitem.length}} min</li>
+                <li class="block title sorting-argument">{{scheduleitem.title}}</li>
+                <li class="block author sorting-argument">{{scheduleitem.authors}}</li>
+                <li class="block department-start sorting-argument">{{scheduleitem.time|split(" ")|last}}</li>
+                <li class="block duration sorting-argument">{{scheduleitem.length}} min</li>
               </ul>
             </li>
             {# now we loop through the movies in the block, and display them #}
@@ -105,7 +105,7 @@
       {% else %}
         {# single, so find page, and then just fill in #}
         {% set submission = pages.find(scheduleitem.items|first.item) %}
-        <li class="table-line">
+        <li class="table-line sort">
           <a href="{{submission.url}}">
             <ul>
               {# img #}
@@ -120,12 +120,12 @@
               </li>
 
               {# title #}
-              <li class="title">
+              <li class="title sorting-argument">
                 {{submission.title}}
               </li>
 
               {# author #}
-              <li class="author">
+              <li class="author sorting-argument">
                 {% if submission.header.author|length %}
                   {% set author = submission.header.author %}
                 {% else %}
@@ -135,7 +135,7 @@
               </li>
 
               {# department #}
-              <li class="department-start">
+              <li class="department-start sorting-argument">
                 {% if scheduleitem.time|length %}
                   {% set time = scheduleitem.time|split(" ")|last %}
                 {% else %}
@@ -145,7 +145,7 @@
               </li>
 
               {# duration #}
-              <li class="duration">
+              <li class="duration sorting-argument">
                 {% if submission.header.duration|length %}
                   {% set duration = submission.header.duration ~ " min" %}
                 {% else %}
