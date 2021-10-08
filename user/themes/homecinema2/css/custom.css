@@ -600,6 +600,18 @@ nav .close-menu{
   width: 100%;
   height: 100%;
 }
+/* coundown */
+#countdown-counter{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  font-size: var(--type-big);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color5);
+}
 
 
 

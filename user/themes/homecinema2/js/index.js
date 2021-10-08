@@ -2,6 +2,7 @@
 var now = new Date();
 var open = false;
 var player = new Vimeo.Player(document.getElementById('cinema'));
+var next = new Date();
 
 // idle function for cinema
 var idleTimer = null;
@@ -64,11 +65,41 @@ $(function(){
       showHideInterface();
     });
   }
+
+  // Update a count down every 1 second
+  var x = setInterval(function() {
+    countdownUpdate();
+  }, 1000);
 });
 
 
 
 // FUNctions
+
+// update counter
+function countdownUpdate(){
+  // check if ther is a movie playing
+  if (next > now) {
+    // do the counter thing
+    // find distance between the date and now
+    var distance = next - now;
+    // Time calculations for days, hours, minutes and seconds
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Display result in time element
+    $('#countdown-counter').text("Next Screening in: " + hours + ":" + minutes + ":" + seconds + " 🍿");
+    // If the count down is finished, do things
+    if (distance < 0) {
+      // clear the counter
+      $('#countdown-counter').text("");
+    }
+  } else {
+    // clear the counter
+    $('#countdown-counter').text("");
+  }
+
+}
 
 // check if we're on phone
 function isTouchDevice() {
@@ -145,6 +176,8 @@ function checkCurrentOrNext(){
         found = true;
         var sentence = "Now playing: <em>" + $(this).data("title") + "</em> by " + $(this).data("author") + " +++"
         $('.now-playing .playing-info').html(sentence);
+        // make the next varable same as now for the counter script to know we are playing a movie
+        next = now;
       }
     } else if (startTimeDate > now && endTimeDate > now) {
       if (found == false) {
@@ -152,6 +185,8 @@ function checkCurrentOrNext(){
         found = true;
         var sentence = "Next Up: <em>" + $(this).data("title") + "</em> by " + $(this).data("author") + " +++"
         $('.now-playing .playing-info').html(sentence);
+        // make the next varable same as the start date of this for the counter script to know what's up
+        next = startTimeDate;
       }
     }
   });
