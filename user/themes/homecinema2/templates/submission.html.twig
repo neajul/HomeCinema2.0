@@ -61,12 +61,13 @@
           {# check if we deal with a block or single item #}
           {% if projectscheduleitem.items|length > 1 %}
             {# block, have to check if this item is included in the list #}
-            {% for item in projectscheduleitem.items if item == page.route %}
+            {% for item in projectscheduleitem.items if item.item == page.route %}
               <li>{{projectscheduleitem.time|date("l, F jS, Y—H:i")}}</li>
             {% endfor %}
           {% else %}
             {# single, have to check if this is the item #}
-            {% if projectscheduleitem.items|first == page.route %}
+            {% if projectscheduleitem.items|first.item == page.route %}
+
               <li>{{projectscheduleitem.time|date("l, F jS, Y—H:i")}}</li>
             {% endif %}
           {% endif %}
