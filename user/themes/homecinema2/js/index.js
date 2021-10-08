@@ -17,7 +17,7 @@ $(function(){
   feather.replace();
 
   // check every x seconds what's playing now
-  var secs = 60;
+  var secs = 30;
   (function(){
     checkCurrentOrNext();
     setTimeout(arguments.callee, secs * 1000);
@@ -76,11 +76,15 @@ $(function(){
 
 // FUNctions
 
+// leading zeros
+const zeroPad = (num, places) => String(num).padStart(places, '0');
+
 // update counter
 function countdownUpdate(){
   // check if ther is a movie playing
   if (next > now) {
     // do the counter thing
+    now = new Date();
     // find distance between the date and now
     var distance = next - now;
     // Time calculations for days, hours, minutes and seconds
@@ -88,7 +92,7 @@ function countdownUpdate(){
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     // Display result in time element
-    $('#countdown-counter').text("Next Screening in: " + hours + ":" + minutes + ":" + seconds + " 🍿");
+    $('#countdown-counter').text("Next Screening in: " + zeroPad(hours, 2) + ":" + zeroPad(minutes, 2) + ":" + zeroPad(seconds, 2) + " 🍿");
     // If the count down is finished, do things
     if (distance < 0) {
       // clear the counter
