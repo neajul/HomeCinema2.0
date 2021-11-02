@@ -37,3 +37,5 @@ form:
 
             about:
               title: Main Text
+            colors:
+              unset@: true
