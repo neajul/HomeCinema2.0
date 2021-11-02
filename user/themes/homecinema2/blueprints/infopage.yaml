@@ -1,0 +1,39 @@
+title: Page Content
+'@extends': about-imprint
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+        content:
+          type: tab
+          fields:
+
+            global:
+              type: section
+              title: Global Things
+              underline: true
+              ordering@: header.title
+              fields:
+                header.titleleft:
+                  type: text
+                  label: title left
+                  ordering@: header.title
+                  style: vertical
+                header.titleright:
+                  type: text
+                  label: title right
+                  ordering@: header.titleleft
+                  style: vertical
+                header.vimeo:
+                  unset@: true
+                header.context:
+                  unset@: true
+                header.intro:
+                  unset@: true
+
+            about:
+              title: Main Text
