@@ -20,15 +20,6 @@
   --type-big: 20px;
 
   /* color */
-  --color1: black; /* black */
-  --color2: #693220; /* brown, dark */
-  --color3: #FCD3DA; /* pink */
-  --color4: #FFF0E9; /* beige */
-  --color5: #FF1A41; /* red */
-  --color6: #A1D2FF; /* blue */
-  --color7: #00FF67; /* green */
-  --color8: #FF7B22; /* orange */
-  --color9: white; /* white */
 
   /* margins */
   --margin: 10px;
@@ -41,19 +32,16 @@
   --transition-med: .3s;
   --transition-long: .8s;
 }
-.light{
-
-}
 body.dark{
-  --color1: white; /* black */
-  --color2: #E1CFC6; /* brown, dark */
-  --color3: #554A46; /* pink */
-  --color4: #131312; /* beige */
-  --color5: #1AFFF1; /* red */
-  --color6: #FBC357; /* blue */
-  --color7: #4371EA; /* green */
-  --color8: #DD5442; /* orange */
-  --color9: black; /* white */
+  --color1: var(--colordark1);
+  --color2: var(--colordark2);
+  --color3: var(--colordark3);
+  --color4: var(--colordark4);
+  --color5: var(--colordark5);
+  --color6: var(--colordark6);
+  --color7: var(--colordark7);
+  --color8: var(--colordark8);
+  --color9: var(--colordark9);
 }
 
 

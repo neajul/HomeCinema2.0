@@ -32,6 +32,32 @@
 
     <link rel="icon" type="image/png" href="{{ url('theme://images/logo.png')|e }}" />
     <link rel="canonical" href="{{ page.canonical(true)|e }}" />
+
+    <style>
+    :root{
+      /* color */
+      --color1: {{aboutpage.header.color1}};
+      --color2: {{aboutpage.header.color2}};
+      --color3: {{aboutpage.header.color3}};
+      --color4: {{aboutpage.header.color4}};
+      --color5: {{aboutpage.header.color5}};
+      --color6: {{aboutpage.header.color6}};
+      --color7: {{aboutpage.header.color7}};
+      --color8: {{aboutpage.header.color8}};
+      --color9: {{aboutpage.header.color9}};
+
+      --colordark1: {{aboutpage.header.colordark1}};
+      --colordark2: {{aboutpage.header.colordark2}};
+      --colordark3: {{aboutpage.header.colordark3}};
+      --colordark4: {{aboutpage.header.colordark4}};
+      --colordark5: {{aboutpage.header.colordark5}};
+      --colordark6: {{aboutpage.header.colordark6}};
+      --colordark7: {{aboutpage.header.colordark7}};
+      --colordark8: {{aboutpage.header.colordark8}};
+      --colordark9: {{aboutpage.header.colordark9}};
+    }
+
+    </style>
 {% endblock head %}
 
 {% block stylesheets %}

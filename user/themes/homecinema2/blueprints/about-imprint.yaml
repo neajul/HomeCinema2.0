@@ -35,11 +35,81 @@ form:
                   ordering@: header.context
                   style: vertical
 
+            colors:
+              type: fieldset
+              title: Styling
+              ordering@: global
+              collapsed: true      # Initial state of fieldset (see collapsible option)
+              collapsible: true    # Whether one can expand the fieldset or not
+              fields:
+                lightmode:
+                  type: fieldset
+                  title: Light Mode
+                  fields:
+                    header.color1:
+                      type: colorpicker
+                      label: Color1
+                    header.color2:
+                      type: colorpicker
+                      label: Color2
+                    header.color3:
+                      type: colorpicker
+                      label: Color3
+                    header.color4:
+                      type: colorpicker
+                      label: Color4
+                    header.color5:
+                      type: colorpicker
+                      label: Color5
+                    header.color6:
+                      type: colorpicker
+                      label: Color6
+                    header.color7:
+                      type: colorpicker
+                      label: Color7
+                    header.color8:
+                      type: colorpicker
+                      label: Color8
+                    header.color9:
+                      type: colorpicker
+                      label: Color9
+                darkmode:
+                  type: fieldset
+                  title: Dark Mode
+                  fields:
+                    header.colordark1:
+                      type: colorpicker
+                      label: Color1
+                    header.colordark2:
+                      type: colorpicker
+                      label: Color2
+                    header.colordark3:
+                      type: colorpicker
+                      label: Color3
+                    header.colordark4:
+                      type: colorpicker
+                      label: Color4
+                    header.colordark5:
+                      type: colorpicker
+                      label: Color5
+                    header.colordark6:
+                      type: colorpicker
+                      label: Color6
+                    header.colordark7:
+                      type: colorpicker
+                      label: Color7
+                    header.colordark8:
+                      type: colorpicker
+                      label: Color8
+                    header.colordark9:
+                      type: colorpicker
+                      label: Color9
+
             about:
               type: section
               title: About Us
               underline: true
-              ordering@: global
+              ordering@: colors
 
             credits:
               type: section
